@@ -13,7 +13,7 @@ on:
       repository:
         description: The {owner}/{repository} that is being deployed.
         required: false
-        default: sapphiredev/sapphire-template
+        default: chikoshidori/yui
   push:
     branches:
       - main
@@ -27,7 +27,7 @@ jobs:
         uses: actions/checkout@a12a3943b4bdde767164f792f33f40b04645d846 # tag=v3
         with:
           fetch-depth: 0
-          repository: ${{ github.event.inputs.repository || 'sapphiredev/sapphire-template' }}
+          repository: ${{ github.event.inputs.repository || 'chikoshidori/yui' }}
           ref: ${{ github.event.inputs.ref || 'main' }}
       - name: Add TypeScript problem matcher
         run: echo "::add-matcher::.github/problemMatchers/tsc.json"

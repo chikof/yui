@@ -1,10 +1,10 @@
 {
-	"name": "@sapphire/template",
+	"name": "@chikoshidori/yui",
 	"version": "0.0.1",
-	"description": "template",
+	"description": "Tmi.js framework",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
-	"author": "@sapphire",
+	"author": "@chikoshidori",
 	"license": "MIT",
 	"scripts": {
 		"lint": "eslint src tests --ext ts --fix",
@@ -54,7 +54,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/sapphiredev/sapphire-template.git"
+		"url": "git+https://github.com/chikoshidori/yui.git"
 	},
 	"files": [
 		"dist",
@@ -65,26 +65,28 @@
 		"npm": ">=7.0.0"
 	},
 	"keywords": [
-		"@sapphire/template",
-		"bot",
+		"@chikoshidori",
 		"typescript",
 		"ts",
 		"yarn",
-		"discord",
-		"sapphire",
-		"discordjs"
+		"twitch",
+		"tmi.js",
+		"tmi"
 	],
 	"bugs": {
-		"url": "https://github.com/sapphiredev/sapphire-template/issues"
+		"url": "https://github.com/chikoshidori/yui/issues"
 	},
-	"homepage": "https://www.sapphirejs.dev",
+	"homepage": "https://chikum.me/yui",
 	"commitlint": {
 		"extends": [
 			"@commitlint/config-conventional"
 		]
 	},
 	"lint-staged": {
-		"*.{mjs,js,ts}": "eslint --fix --ext mjs,js,ts"
+		"*.{mjs,js,ts}": [
+			"eslint --fix --ext mjs,js,ts",
+			"prettier --write"
+		]
 	},
 	"config": {
 		"commitizen": {
