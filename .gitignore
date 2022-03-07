@@ -1,26 +1,7 @@
-# Ignore a blackhole and the folder for development
+# Folders that are on other branches
 node_modules/
-.vs/
-.idea/
-*.iml
-coverage/
-docs/
-
-# Yarn files
-.yarn/install-state.gz
-.yarn/build-state.yml
-
-# Ignore tsc dist folder
+.github/
 dist/
-
-# Ignore JavaScript files
-**/*.js
-**/*.mjs
-**/*.js.map
-**/*.d.ts
-!src/**/*.d.ts
-**/*.tsbuildinfo
-!jest.config.ts
 
 # Ignore heapsnapshot and log files
 *.heapsnapshot
@@ -29,8 +10,8 @@ dist/
 # Ignore package locks
 package-lock.json
 
-# Ignore the GH cli downloaded by workflows
-gh
-
-# Ignore the "wiki" folder so we can checkout the wiki inside the same folder
-wiki/
+# Environment variables
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
