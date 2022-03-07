@@ -87,3 +87,39 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           directory: coverage/
           fail_ci_if_error: true
+
+  Publish_Docs:
+    name: Docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # renovate: tag=v2
+      - name: Checkout Project
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # renovate: tag=v2
+        with:
+          ref: docs
+          path: out
+      - name: Use Node.js v16
+        uses: actions/setup-node@9ced9a43a244f3ac94f13bfd896db8c8f30da67a # tag=v3
+        with:
+          node-version: 16
+          cache: yarn
+          registry-url: https://registry.npmjs.org/
+      - name: Install Dependencies
+        run: yarn --immutable
+      - name: Build code for Docs
+        run: yarn docs
+      - name: Push new code
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          echo -e "\n# Remove any old files in the dist folder"
+          rm -rfv out/docs/*
+          echo -e "\n# Move the generated docs to the newly-checked-out repo, to be committed and pushed"
+          rsync -vaI docs/ out/docs
+          echo -e "\n# Commit and push"
+          cd out
+          git add --all .
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "build: docs build for ${GITHUB_SHA}" || true
+          git push origin docs
